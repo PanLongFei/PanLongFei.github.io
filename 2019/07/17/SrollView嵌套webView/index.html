@@ -5,22 +5,22 @@
   
 
   
-  <title>自定义可滑动多个导航标题视图 | Hexo</title>
+  <title>ScrollView嵌套webView | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   
   
-  <meta name="description" content="自定义新闻标题导航栏">
+  <meta name="description" content="解决ScrollView嵌套webView滚动冲突处理">
 <meta property="og:type" content="article">
-<meta property="og:title" content="自定义可滑动多个导航标题视图">
-<meta property="og:url" content="http://yoursite.com/2019/07/17/CustomTitleView/index.html">
+<meta property="og:title" content="ScrollView嵌套webView">
+<meta property="og:url" content="http://yoursite.com/2019/07/17/SrollView嵌套webView/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="自定义新闻标题导航栏">
+<meta property="og:description" content="解决ScrollView嵌套webView滚动冲突处理">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-17T08:17:23.140Z">
+<meta property="og:updated_time" content="2019-08-14T02:52:37.994Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="自定义可滑动多个导航标题视图">
-<meta name="twitter:description" content="自定义新闻标题导航栏">
+<meta name="twitter:title" content="ScrollView嵌套webView">
+<meta name="twitter:description" content="解决ScrollView嵌套webView滚动冲突处理">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -65,20 +65,20 @@
   </div>
 </header>
       <div id="middlecontent" title class="global-width sidebar-right">
-        <section id="main"><article id="post-CustomTitleView" class="article global-container article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-SrollView嵌套webView" class="article global-container article-type-post" itemscope itemprop="blogPost">
   
     <header class="article-header">
       
   
     <h1 class="article-title" itemprop="name">
-      自定义可滑动多个导航标题视图
+      ScrollView嵌套webView
     </h1>
   
 
     </header>
   
   <div class="article-meta">
-    <a href="/2019/07/17/CustomTitleView/" class="article-date">
+    <a href="/2019/07/17/SrollView嵌套webView/" class="article-date">
   <time datetime="2019-07-17T02:29:30.167Z" itemprop="datePublished">2019-07-17</time>
 </a>
     
@@ -95,22 +95,18 @@
     <div class="article-content article-content-cloud" itemprop="articleBody">
       
         <blockquote>
-<p>自定义新闻标题导航栏</p>
+<p>解决ScrollView嵌套webView滚动冲突处理</p>
 </blockquote>
 <a id="more"></a>
 
 
-<h2 id="PLFTitleView"><a href="#PLFTitleView" class="headerlink" title="PLFTitleView"></a>PLFTitleView</h2><p>项目中经常用到类似新闻导航栏多个标签的控件，简单封装了这个控件，可自定义<strong>选中颜色</strong>和<strong>字体font</strong>，下划线宽度给了两种，也可自定义下划线宽度；<br>点击事件用Block方式实现，简单易用。</p>
-<h3 id="初始化方法"><a href="#初始化方法" class="headerlink" title="初始化方法"></a>初始化方法</h3><div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- (instancetype)initWithTitleArray:(NSArray *)array;</span><br></pre></td></tr></table></figure></div>
+<h2 id="KVO监听"><a href="#KVO监听" class="headerlink" title="KVO监听"></a>KVO监听</h2><p>使用KVO监听webView的“contentSize”，动态修改webView高度，解决webView与scrollView滚动冲突</p>
+<h3 id="禁止webView滚动"><a href="#禁止webView滚动" class="headerlink" title="禁止webView滚动"></a>禁止webView滚动</h3><div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">webView.scrollView.scrollEnabled = NO;</span><br></pre></td></tr></table></figure></div>
 
-<p>传入相应的标题数组，自动计算宽度</p>
-<h3 id="设置默认颜色，选中颜色及字体"><a href="#设置默认颜色，选中颜色及字体" class="headerlink" title="设置默认颜色，选中颜色及字体"></a>设置默认颜色，选中颜色及字体</h3><div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- (void)setNormalColor:(UIColor *)normalColor</span><br><span class="line">selectColor:(UIColor *)selectColor</span><br><span class="line">font:(UIFont *)font;</span><br></pre></td></tr></table></figure></div>
+<h3 id="webView添加KVO监听"><a href="#webView添加KVO监听" class="headerlink" title="webView添加KVO监听"></a>webView添加KVO监听</h3><div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[webView.scrollView addObserver:self forKeyPath:@&quot;contentSize&quot; options:NSKeyValueObservingOptionNew context:nil];</span><br></pre></td></tr></table></figure></div>
 
-<h3 id="外部设置选中第几个标题"><a href="#外部设置选中第几个标题" class="headerlink" title="外部设置选中第几个标题"></a>外部设置选中第几个标题</h3><div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- (void)selectIndex:(int)index;</span><br></pre></td></tr></table></figure></div>
+<h3 id="KVO回调"><a href="#KVO回调" class="headerlink" title="KVO回调"></a>KVO回调</h3><div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary&lt;NSKeyValueChangeKey,id&gt; *)change context:(void *)context&#123;</span><br><span class="line">//更具内容的高重置webView视图的高度</span><br><span class="line">CGFloat newHeight = self.webView.scrollView.contentSize.height;</span><br><span class="line">[self.webView mas_updateConstraints:^(MASConstraintMaker *make) &#123;</span><br><span class="line">make.height.mas_equalTo(newHeight);</span><br><span class="line">&#125;];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 
-<h3 id="点击标题后的回调-index为下标值，从0开始"><a href="#点击标题后的回调-index为下标值，从0开始" class="headerlink" title="点击标题后的回调 index为下标值，从0开始"></a>点击标题后的回调 index为下标值，从0开始</h3><div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">typedef void(^titleBtnClick)(NSInteger index);</span><br></pre></td></tr></table></figure></div>
-
-<p>Github链接:<a href="https://github.com/PanLongFei/PLFTitleView" target="_blank" rel="noopener">新闻标题导航栏</a></p>
 
       
     </div>
@@ -125,13 +121,17 @@
 <nav id="article-nav">
   <div class="article-nav-block">
     
+      <a href="/2019/07/17/PLFAudioPlayManager/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption"></strong>
+        <div class="article-nav-title">
+          
+            音频播放工具类
+          
+        </div>
+      </a>
+    
   </div>
   <div class="article-nav-block">
-    
-      <a href="/2019/07/17/PLFAudioPlayManager/" id="article-nav-older" class="article-nav-link-wrap">
-        <div class="article-nav-title">音频播放工具类</div>
-        <strong class="article-nav-caption"></strong>
-      </a>
     
   </div>
 </nav>
